@@ -58,7 +58,7 @@ export class AuthService {
             password: decryptedPassword ? await bcrypt.hash(decryptedPassword, 10) : await bcrypt.hash(password, 10),
             referral_code
         })
-        console.log('22222222222', '>>>>', this.configService.get('ENCRYPTION_KEY'), user  )
+        console.log('22222222222', '>>>>', this.configService.get('ENCRYPTION_KEY'), '****' ,user  )
           console.log(`decrypted pass - ${decryptedPassword}`, user)
         if (user.verified) returnErrorResponse('Already a user')
 
