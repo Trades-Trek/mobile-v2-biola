@@ -41,17 +41,17 @@ import { AppSettingsModule } from './app-settings/app-settings.module';
         CacheModule.register({isGlobal: true}),
         TypeOrmModule.forRootAsync({
             imports: [ConfigModule],
-            useFactory: (configService: ConfigService) => ({
-                type: 'mysql',
-                host: 'ttwebadmin.c3g8gce48972.us-east-1.rds.amazonaws.com',
-                port: 3306,
-                username: 'ttadmin',
-                password: '5vOwv851szeR',
-                database: 'ttwebadmin',
-                entities: ['dist/**/*.entity{ .ts,.js}'],
-                // synchronize: true,
-                logging: true
-            })
+            // useFactory: (configService: ConfigService) => ({
+            //     type: 'mysql',
+            //     host: 'ttwebadmin.c3g8gce48972.us-east-1.rds.amazonaws.com',
+            //     port: 3306,
+            //     username: 'ttadmin',
+            //     password: '5vOwv851szeR',
+            //     database: 'ttwebadmin',
+            //     entities: ['dist/**/*.entity{ .ts,.js}'],
+            //     // synchronize: true,
+            //     logging: true
+            // })
         }),
         ConfigModule.forRoot({
             isGlobal: true,
