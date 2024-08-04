@@ -44,7 +44,8 @@ export class AuthService {
                 fields_to_load: USER.REFERRAL_CODE
             })) returnErrorResponse('Invalid referral code')
         }
-        const decryptedPassword = useEncryptionService().decryptData(password, this.configService.get('ENCRYPTION_KEY'))
+        
+        // const decryptedPassword = useEncryptionService().decryptData(password, this.configService.get('ENCRYPTION_KEY'))
 
 
         const user = await this.userService.findOne({
@@ -55,11 +56,11 @@ export class AuthService {
             first_name,
             last_name,
             email,
-            password: decryptedPassword ? await bcrypt.hash(decryptedPassword, 10) : await bcrypt.hash(password, 10),
+            password: await bcrypt.hash(password, 10),
+            // password: decryptedPassword ? await bcrypt.hash(decryptedPassword, 10) : await bcrypt.hash(password, 10),
             referral_code
         })
-        console.log('22222222222', '>>>>', this.configService.get('ENCRYPTION_KEY'), '****' ,user  )
-          console.log(`decrypted pass - ${decryptedPassword}`, user)
+      
         if (user.verified) returnErrorResponse('Already a user')
 
         await this.otpService.sendOtpViaEmail(user.email)
