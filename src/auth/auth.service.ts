@@ -90,7 +90,7 @@ export class AuthService {
         })
         if (!user) returnErrorResponse('User does not exist')
 
-        const decryptedPassword = useEncryptionService().decryptData(password, this.configService.get('ENCRYPTION_KEY'))
+        // const decryptedPassword = useEncryptionService().decryptData(password, this.configService.get('ENCRYPTION_KEY'))
 
         if (!await this.comparePassword(password, user.password)) returnErrorResponse('Invalid credentials')
 
