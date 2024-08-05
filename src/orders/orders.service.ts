@@ -32,6 +32,18 @@ export class OrdersService {
     constructor(private competitionService: CompetitionsService, private companyService: CompanyService, private stockPriceService: StockPriceService, private walletService: WalletService, private schedulerRegistry: SchedulerRegistry, @InjectModel(Order.name) private orderModel: Model<Order>, private notificationService: NotificationsService, private eventEmitter: EventEmitter2) {
     }
 
+    async getUserOrders(user: UserDocument, pagination: Pagination) {
+        
+    
+        const [orders, total] = await Promise.all([
+            this.orderModel.find({ user_id: user.id }).exec(),
+            this.orderModel.countDocuments({ user_id: user.id })
+        ]);
+    
+        return successResponse({ orders })
+ 
+    }
+
     async create(stockPriceSymbol: string, createOrderDto: CreateOrderDto, user: UserDocument) {
         const {competition_id, order_type, price, quantity, duration, trade_action} = createOrderDto;
         console.log('inside')

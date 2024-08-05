@@ -5,11 +5,13 @@ import {Order, OrderSchema} from "./schemas/order.schema";
 import {CompetitionsModule} from "../competitions/competitions.module";
 import {WalletModule} from "../wallet/wallet.module";
 import {AccountValue, AccountValueSchema} from "../competitions/schemas/account-value.schema";
+import {OrdersController} from './orders.controller';
 
 @Module({
     imports: [WalletModule,forwardRef(() => CompetitionsModule), MongooseModule.forFeature([{name: Order.name, schema: OrderSchema}, {name:AccountValue.name, schema:AccountValueSchema}])],
     providers: [OrdersService],
-    exports: [OrdersService]
+    exports: [OrdersService],
+    controllers: [OrdersController],
 })
 export class OrdersModule {
 }
