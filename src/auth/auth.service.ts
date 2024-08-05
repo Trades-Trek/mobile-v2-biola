@@ -62,8 +62,9 @@ export class AuthService {
         })
       
         if (user.verified) returnErrorResponse('Already a user')
-
+      
         await this.otpService.sendOtpViaEmail(user.email)
+  
         return successResponse({is_verified: false, message: 'A one time passcode has been sent to your email'})
     }
 
